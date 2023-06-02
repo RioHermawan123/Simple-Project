@@ -25,7 +25,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  overflow: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -185,17 +184,23 @@ table {
   text-align: center;
   margin-top: 40px;
   margin-bottom: 10px;
-  font-size: 160%;
 }
 
-.quotes > h1 {
+@media screen and (max-width: 470px) {
+  .quotes > h1 {
+    font-size: 13px;
+  }
+}
+/* ----------------- */
+
+.quotes-h1 {
   margin: 0 auto;
   overflow: hidden;
   white-space: nowrap;
   color: black;
   font-family: monospace;
   animation: typing 3.5s steps(30, end), blink-caret .5s step-end infinite;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 @keyframes typing {
