@@ -52,6 +52,14 @@ table {
   justify-content: center;  
 }
 
+@media screen and (max-width: 470px) {
+  .header-wrapper {
+    display: flex;
+    margin-top: 20px;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
 /* ------- Burger Drop Down ------ */
 
 
