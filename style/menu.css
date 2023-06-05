@@ -14,6 +14,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #dfdcdc;
 }
 
 /* ///////////..utility classes../////////// */
@@ -134,7 +135,6 @@ body {
 
   .navbar-container {
     display: block;
-    position: relative;
     height: 64px;
   }
 
@@ -151,8 +151,8 @@ body {
 
   .navbar-container .hamburger-lines {
     display: block;
-    height: 23px;
-    width: 35px;
+    height: 20px;
+    width: 30px;
     position: absolute;
     top: 17px;
     left: 20px;
@@ -207,9 +207,9 @@ body {
   .logo {
     top: 5px;
     right: 15px;
-    font-size: 20px;
-    margin-top: 7px;
-    position: fixed;
+    font-size: 15px;
+    margin-top: 11px;
+    position: absolute;
     z-index: -1;
   }
 
@@ -360,7 +360,7 @@ body {
   
   @media only screen and (max-width: 767px) {
     .ag-format-container {
-      width: 96%;
+      width: 85%;
     }
   
   }
