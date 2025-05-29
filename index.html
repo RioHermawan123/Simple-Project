@@ -1,92 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Project</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./style/style.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="navbar-container container">
-          <!-- ----------- POPUP ---------- -->
-          <h1 class="logo" id="welcomeMessage"></h1>
-      </div>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Entry Barang</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 5px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 0;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
 
-      <div class="overlay" id="welcomeOverlay">
-        <div class="popup">
-            <h1>Welcome!</h1>
-            <p>Please Insert Your Name:</p>
-            <input type="text" id="nameInput">
-            <button onclick="submitName()">submit</button>
-        </div>
-      </div>
+<div class="container">
+  <h2>DATA</h2>
+  <form 
+    id="googleForm"
+    action="https://docs.google.com/forms/d/e/1FAIpQLSfciyncEbpmYuFijO-eFh_8Yps_OcXToKMzn9SXi0eGetgC7g/formResponse"
+    method="POST" 
+    target="hidden_iframe" 
+    onsubmit="return validateForm()">
 
-      <!-- ------------------------ -->
-  </nav>
-<!-- -------------------------- -->
-    <main>
-      <div class="main-menu">
-      <div class="quotes">
-      <h1 class="quotes-h1">LET`S GET STARTED, AND SHAPE THE FUTURE WITH CODE!</h1>
-      </div>
-      <div class="coding">
-        <img class="content-img" src="./assets/a.jpg" alt="Coding">
-      </div>
-      <div class="arrowslide">
-        <button class="prev-btn">&lt;</button>
-        <button class="next-btn">&gt;</button>
-      </div>
-<!-- -------- MAIN ---------- -->
-    </div>
-    <div class="explore">
-    <button class="button-84" role="button"><a href="./menu.html">Let`s Explore</a></button>
-    </div>
-    <!-- ----------- -->
-    <footer>
-        <div class="ftr-text">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, incidunt?</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </div>
-        <div class="social-media">
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-linkedin"></a>
-        </div>
-        <div class="about" id="about">
-            <div class="contact">
-                <h2 class="title">Contact</h2>
-                <ul class="cnt">
-                    <li><a href="#">Whatsapp</a></li>
-                    <li><a href="#">E-Mail</a></li>
-                </ul>
-            </div>
-            <div class="report">
-                <h2 class="title">Report Problem</h2>
-                <ul class="cnt">
-                    <li><a href="#">Whatsapp</a></li>
-                    <li><a href="#">E-Mail</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <div class="ftr-box">
-                <p>Copyright © 2023 . Rio Dwi Hermawan</p>
-            </div>
-        </div>
-    </footer>
-    <!-- ----------- -->
-    </main>
-  </body>
-  <script src="./js/slide.js"></script>
-  <script src="./js/popup.js"></script>
+    <label for="tipeBarang">Tipe Barang</label>
+    <input type="text" name="entry.1786664568" id="tipeBarang" required />
+
+    <label for="kodeBarang">Kode Barang</label>
+    <select name="entry.152525380" id="kodeBarang" required>
+      <option value="">-- Pilih Kode Barang --</option>
+      <option value="acr">acr</option>
+      <option value="dell">dell</option>
+      <option value="len">len</option>
+    </select>
+
+    <label for="namaBarang">Nama Barang</label>
+    <select name="entry.412812543" id="namaBarang" required>
+      <option value="">-- Pilih Nama Barang --</option>
+      <option value="acer">acer</option>
+      <option value="dell">dell</option>
+      <option value="lenovo">lenovo</option>
+    </select>
+
+    <label for="qty">Qty</label>
+    <input type="number" name="entry.857437630" id="qty" min="1" required />
+
+    <label for="harga">Harga</label>
+    <input type="number" name="entry.1771819322" id="harga" min="0" required />
+
+    <label for="namaUser">Nama User</label>
+    <input type="text" name="entry.1725039947" id="namaUser" required />
+
+    <label for="kontak">Kontak</label>
+    <input type="text" name="entry.790332815" id="kontak" required />
+
+    <button type="submit">Submit ke Google Form</button>
+  </form>
+</div>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+  const kodeSelect = document.getElementById('kodeBarang');
+  const namaSelect = document.getElementById('namaBarang');
+  const form = document.getElementById('googleForm');
+
+  // Mapping kode ↔ nama
+  const kodeNamaMap = {
+    acr: 'acer',
+    dell: 'dell',
+    len: 'lenovo'
+  };
+
+  const namaKodeMap = {
+    acer: 'acr',
+    dell: 'dell',
+    lenovo: 'len'
+  };
+
+  // Sinkron saat pilih kode
+  kodeSelect.addEventListener('change', () => {
+    namaSelect.value = kodeNamaMap[kodeSelect.value] || '';
+  });
+
+  // Sinkron saat pilih nama
+  namaSelect.addEventListener('change', () => {
+    kodeSelect.value = namaKodeMap[namaSelect.value] || '';
+  });
+
+  function validateForm() {
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    for (let input of inputs) {
+      if (!input.value.trim()) {
+        alert('Mohon isi semua field!');
+        input.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const iframe = document.querySelector('iframe[name="hidden_iframe"]');
+  let submitted = false;
+
+  iframe.addEventListener('load', () => {
+    if (submitted) {
+      alert('✅ Data berhasil dikirim!');
+      form.reset();
+      kodeSelect.value = '';
+      namaSelect.value = '';
+      submitted = false;
+    }
+  });
+
+  form.addEventListener('submit', () => {
+    submitted = true;
+  });
+</script>
+
+</body>
 </html>
