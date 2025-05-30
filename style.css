@@ -1,0 +1,85 @@
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0;
+  }
+  .container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    width: 600px;  /* Lebar container landscape */
+  }
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  form {
+    display: flex;
+    gap: 30px; /* jarak antar kolom */
+  }
+
+  .column {
+    flex: 1; /* dua kolom sama lebar */
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-top: 10px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  select, input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  button {
+    margin-top: 24px;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* supaya button full bawah kanan */
+  .right-column button {
+    margin-top: auto; /* dorong ke bawah */
+  }
+
+  /* Responsive untuk layar sempit */
+  @media(max-width: 650px) {
+    .container {
+      width: 100%;
+      margin: 15px;
+    }
+    form {
+      flex-direction: column;
+    }
+    .right-column button {
+      margin-top: 18px;
+    }
+  }
