@@ -3,129 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Form Entry Barang</title>
+  <title>INDENT STATUS G-MADIUN</title>
+
+  <!-- AdminLTE + Bootstrap + Select2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f0f0;
-      display: flex; justify-content: center; align-items: center;
-      height: 100vh; margin: 0;
+      background-color: #f4f6f9;
     }
-    .container {
-      background: white;
-      padding: 25px 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      width: 350px;
+    .card {
+      max-width: 800px;
+      margin: 50px auto;
     }
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-top: 12px;
-      color: #555;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px 10px;
-      margin-top: 5px;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      font-size: 15px;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 0;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #45a049;
+    .select2-container--default .select2-selection--single {
+      height: 38px;
+      padding: 6px 10px;
+      border: 1px solid #ced4da;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>DATA</h2>
-  <form 
-    id="googleForm"
-    action="https://docs.google.com/forms/d/e/1FAIpQLSfciyncEbpmYuFijO-eFh_8Yps_OcXToKMzn9SXi0eGetgC7g/formResponse"
-    method="POST" 
-    target="hidden_iframe" 
-    onsubmit="return validateForm()">
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">UPLOAD REQUEST DATA INDENT G-MADIUN OOW</h3>
+    </div>
+    <form 
+      id="googleForm"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfciyncEbpmYuFijO-eFh_8Yps_OcXToKMzn9SXi0eGetgC7g/formResponse"
+      method="POST" 
+      target="hidden_iframe" 
+      onsubmit="return validateForm()"
+    >
+      <div class="card-body">
+        <div class="row">
+          <!-- LEFT COLUMN -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="tipeBarang">Tipe Barang</label>
+              <select name="entry.1786664568" id="tipeBarang" class="form-control select2" required>
+                <option value="">-- Pilih Tipe Barang --</option>
+                <option value="laptop">Laptop</option>
+                <option value="desktop">Desktop</option>
+                <option value="monitor">Monitor</option>
+              </select>
+            </div>
 
-    <label for="tipeBarang">Tipe Barang</label>
-    <input type="text" name="entry.1786664568" id="tipeBarang" required />
+            <div class="form-group">
+              <label for="kodeBarang">Kode Barang</label>
+              <select name="entry.152525380" id="kodeBarang" class="form-control select2" required>
+                <option value="">-- Pilih Kode Barang --</option>
+              </select>
+            </div>
 
-    <label for="kodeBarang">Kode Barang</label>
-    <select name="entry.152525380" id="kodeBarang" required>
-      <option value="">-- Pilih Kode Barang --</option>
-      <option value="acr">acr</option>
-      <option value="dell">dell</option>
-      <option value="len">len</option>
-    </select>
+            <div class="form-group">
+              <label for="namaBarang">Nama Barang</label>
+              <select name="entry.412812543" id="namaBarang" class="form-control select2" required>
+                <option value="">-- Pilih Nama Barang --</option>
+              </select>
+            </div>
 
-    <label for="namaBarang">Nama Barang</label>
-    <select name="entry.412812543" id="namaBarang" required>
-      <option value="">-- Pilih Nama Barang --</option>
-      <option value="acer">acer</option>
-      <option value="dell">dell</option>
-      <option value="lenovo">lenovo</option>
-    </select>
+            <div class="form-group">
+              <label for="qty">Qty</label>
+              <input type="number" name="entry.857437630" id="qty" min="1" class="form-control" required />
+            </div>
+          </div>
 
-    <label for="qty">Qty</label>
-    <input type="number" name="entry.857437630" id="qty" min="1" required />
+          <!-- RIGHT COLUMN -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="harga">Harga</label>
+              <input type="number" name="entry.1771819322" id="harga" min="0" class="form-control" required />
+            </div>
 
-    <label for="harga">Harga</label>
-    <input type="number" name="entry.1771819322" id="harga" min="0" required />
+            <div class="form-group">
+              <label for="namaUser">Nama User</label>
+              <input type="text" name="entry.1725039947" id="namaUser" class="form-control" required />
+            </div>
 
-    <label for="namaUser">Nama User</label>
-    <input type="text" name="entry.1725039947" id="namaUser" required />
+            <div class="form-group">
+              <label for="kontak">Kontak</label>
+              <input type="text" name="entry.790332815" id="kontak" class="form-control" required />
+            </div>
 
-    <label for="kontak">Kontak</label>
-    <input type="text" name="entry.790332815" id="kontak" required />
-
-    <button type="submit">Submit ke Google Form</button>
-  </form>
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-success btn-block">SUBMIT DATA</button>
+            </div>
+           <div class="form-group mt-4">
+          <button type="button" class="btn btn-danger btn-block" onclick="window.open('https://docs.google.com/spreadsheets/d/1AFw_4bl2xfh_0gOREIP99EaGAP1_g16uzN8BhHtRSlg/edit?usp=sharing', '_blank')">
+           CEK DATA INDENT
+          </button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
 <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+<!-- Load data.js -->
+<script src="data.js"></script>
+
+<!-- jQuery + Bootstrap + Select2 + AdminLTE -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
 
 <script>
   const kodeSelect = document.getElementById('kodeBarang');
   const namaSelect = document.getElementById('namaBarang');
   const form = document.getElementById('googleForm');
 
-  // Mapping kode ↔ nama
-  const kodeNamaMap = {
-    acr: 'acer',
-    dell: 'dell',
-    len: 'lenovo'
-  };
+  function populateOptions() {
+    kodeSelect.length = 1;  // reset, keep placeholder
+    namaSelect.length = 1;
 
-  const namaKodeMap = {
-    acer: 'acr',
-    dell: 'dell',
-    lenovo: 'len'
-  };
+    for (const kode in kodeNamaMap) {
+      const opt = document.createElement('option');
+      opt.value = kode;
+      opt.textContent = kode;
+      kodeSelect.appendChild(opt);
+    }
 
-  // Sinkron saat pilih kode
-  kodeSelect.addEventListener('change', () => {
-    namaSelect.value = kodeNamaMap[kodeSelect.value] || '';
-  });
+    for (const nama in namaKodeMap) {
+      const opt = document.createElement('option');
+      opt.value = nama;
+      opt.textContent = nama;
+      namaSelect.appendChild(opt);
+    }
+  }
 
-  // Sinkron saat pilih nama
-  namaSelect.addEventListener('change', () => {
-    kodeSelect.value = namaKodeMap[namaSelect.value] || '';
+  $(document).ready(function () {
+    populateOptions();
+
+    $('.select2').select2({
+      selectOnClose: true,
+      width: '100%'
+    });
+
+    let isSyncing = false;
+
+    $('#kodeBarang').on('change', function () {
+      if (isSyncing) return;
+      isSyncing = true;
+
+      const kode = this.value;
+      const nama = kodeNamaMap[kode];
+      if (nama) {
+        $('#namaBarang').val(nama).trigger('change');
+      }
+
+      setTimeout(() => {
+        $('#namaBarang').select2('close');
+        $('#kodeBarang').select2('close');
+        isSyncing = false;
+      }, 0);
+    });
+
+    $('#namaBarang').on('change', function () {
+      if (isSyncing) return;
+      isSyncing = true;
+
+      const nama = this.value;
+      const kode = namaKodeMap[nama];
+      if (kode) {
+        $('#kodeBarang').val(kode).trigger('change');
+      }
+
+      setTimeout(() => {
+        $('#kodeBarang').select2('close');
+        $('#namaBarang').select2('close');
+        $('#qty').focus();
+        isSyncing = false;
+      }, 0);
+    });
   });
 
   function validateForm() {
@@ -147,8 +205,7 @@
     if (submitted) {
       alert('✅ Data berhasil dikirim!');
       form.reset();
-      kodeSelect.value = '';
-      namaSelect.value = '';
+      $('.select2').val(null).trigger('change');
       submitted = false;
     }
   });
