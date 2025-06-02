@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>INDENT STATUS G-MADIUN</title>
+
+    <!-- AdminLTE + Bootstrap + Select2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link rel="icon" type="image/x-icon" href="favico.ico" />
+    <link rel="stylesheet" href="daterangepicker.css" />
+
+    <style>
+      body {
+        background-color: #9d9d9e;
+      }
+      .card {
+        max-width: 800px;
+        margin: 50px auto;
+      }
+      .select2-container--default .select2-selection--single {
+        height: 38px;
+        padding: 6px 10px;
+        border: 1px solid #ced4da;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header d-flex p-0" style="background-color: #343a40">
+            <h3 class="card-title p-3 text-white">
+              ENTRY TOOLS TEKSU G-MADIUN
+            </h3>
+            <ul class="nav nav-pills ml-auto p-2">
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="index.html"
+                  >INDENT USER</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-white" href="index2.html"
+                  >BARMAS OOW</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-warning" href="#" data-toggle="tab"
+                  >Tab 3</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <!-- TAB 1: INDENT -->
+              <div class="tab-pane active" id="tab_2">
+                <form
+                  id="googleForm"
+                  action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSec_VVIqASoRcO_CpAKMvzdrqOmVxyJUV5lF8dS4T3tRgWVuw/formResponse"
+                  method="POST"
+                  target="hidden_iframe"
+                  onsubmit="return validateForm()"
+                >
+                  <div class="row">
+                    <!-- LEFT COLUMN -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="tipeBarang">Tipe Barang</label>
+                        <select
+                          name="entry.979889880"
+                          id="tipeBarang"
+                          class="form-control select2"
+                          required
+                        >
+                          <option value="">-- Pilih Tipe Barang --</option>
+                          <option value="charger">Adaptor</option>
+                          <option value="keyboard">Keyboard</option>
+                          <option value="battery">Baterai</option>
+                          <option value="led">LCD</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="kodeBarang">Kode Barang</label>
+                        <select
+                          name="entry.1759826382"
+                          id="kodeBarang"
+                          class="form-control select2"
+                          required
+                        >
+                          <option value="">-- Pilih Kode Barang --</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="namaBarang">Nama Barang</label>
+                        <select
+                          name="entry.1109584203"
+                          id="namaBarang"
+                          class="form-control select2"
+                          required
+                        >
+                          <option value="">-- Pilih Nama Barang --</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="harga">Jumlah</label>
+                        <input
+                          type="text"
+                          name="entry.366944927"
+                          id="jumlah"
+                          class="form-control"
+                          required
+                        />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="harga">Waktu Keluar - Masuk</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="far fa-calendar-alt"></i>
+                            </span>
+                          </div>
+                          <input
+                            type="text"
+                            name="entry.112185119"
+                            class="form-control float-right"
+                            id="reservation"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-success btn-block">
+                          SUBMIT DATA
+                        </button>
+                      </div>
+
+                      <div class="form-group mt-4">
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-block"
+                          onclick="window.open('https://docs.google.com/spreadsheets/d/1AFw_4bl2xfh_0gOREIP99EaGAP1_g16uzN8BhHtRSlg/edit?resourcekey=&gid=2061399125#gid=2061399125', '_blank')"
+                        >
+                          CEK DATA INDENT
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <iframe name="hidden_iframe" style="display: none"></iframe>
+
+    <!-- Data.js -->
+    <script src="data/data1.js"></script>
+
+    <!-- jQuery + Bootstrap + Select2 + AdminLTE -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+    <!-- Moment.js & Daterangepicker.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+      $(function () {
+        $("#reservation").daterangepicker({
+          locale: {
+            format: "DD/MM/YYYY",
+          },
+        });
+
+        // Initialize Select2
+        $(".select2").select2();
+
+        // Your form validation function placeholder
+        window.validateForm = function () {
+          // Example validation: all required fields are filled
+          // You can customize this function as needed
+          return true;
+        };
+      });
+    </script>
+
+    <script src="js/controller1.js"></script>
+  </body>
+</html>
