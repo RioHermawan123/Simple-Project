@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Barang dari Google Sheets</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        background-color: #f4f4f4;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 20px auto;
+      }
+      #searchBox {
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      #refreshIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ce872b;
+        border-radius: 5px;
+        background-color: #fff;
+        cursor: pointer;
+        font-size: 20px;
+        transition: transform 0.3s;
+      }
+      #refreshIcon.loading {
+        transform: rotate(90deg);
+      }
+      #rowsPerPage {
+        margin-left: 8px;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #ce872b;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+      td {
+        max-width: 300px;
+        word-wrap: break-word;
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .page-btn {
+        padding: 5px 10px;
+        border: 1px solid #ce872b;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fff;
+      }
+      .page-btn.active {
+        background-color: #ce872b;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Daftar Barang dari Google Sheets</h2>
+
+    <div class="search-container">
+      <input type="text" id="searchBox" placeholder="Cari nama barang..." />
+      <div id="refreshIcon" title="Refresh">&#x21bb;</div>
+      <select id="rowsPerPage">
+        <option value="10" selected>10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+
+    <table id="tabelBarang">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Barang</th>
+          <th>Harga</th>
+          <th>Stock IN</th>
+          <th>Stock Out</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+      const searchBox = document.getElementById("searchBox");
+      const refreshIcon = document.getElementById("refreshIcon");
+      const tbody = document.querySelector("#tabelBarang tbody");
+      const pagination = document.getElementById("pagination");
+      const rowsPerPageSelect = document.getElementById("rowsPerPage");
+
+      let dataRows = [];
+      let currentPage = 1;
+      let rowsPerPage = parseInt(rowsPerPageSelect.value);
+
+      // Parser CSV sederhana
+      function parseCSV(str) {
+        return str
+          .trim()
+          .split(/\r?\n/)
+          .map((line) => {
+            let result = [],
+              current = "",
+              insideQuote = false;
+            for (let char of line) {
+              if (char === '"' && !insideQuote) insideQuote = true;
+              else if (char === '"' && insideQuote) insideQuote = false;
+              else if (char === "," && !insideQuote) {
+                result.push(current.trim());
+                current = "";
+              } else current += char;
+            }
+            result.push(current.trim());
+            return result;
+          });
+      }
+
+      // Update tabel sesuai halaman & search
+      function updateTable(page = 1) {
+        tbody.innerHTML = "";
+        const filtered = dataRows.filter(
+          (row) =>
+            row.nama &&
+            row.nama.toLowerCase().includes(searchBox.value.toLowerCase())
+        );
+        const start = (page - 1) * rowsPerPage;
+        const paginatedRows = filtered.slice(start, start + rowsPerPage);
+        paginatedRows.forEach((row, index) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${start + index + 1}</td>
+                    <td>${row.nama}</td>
+                    <td>${row.harga}</td>
+                    <td>${row.stockIn}</td>
+                    <td>${row.stockOut}</td>`;
+          tbody.appendChild(tr);
+        });
+        setupPagination(filtered.length, page);
+      }
+
+      // Setup pagination
+      function setupPagination(totalRows, page) {
+        pagination.innerHTML = "";
+        const totalPages = Math.ceil(totalRows / rowsPerPage) || 1;
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("div");
+          btn.classList.add("page-btn");
+          if (i === page) btn.classList.add("active");
+          btn.innerText = i;
+          btn.addEventListener("click", () => {
+            currentPage = i;
+            updateTable(currentPage);
+          });
+          pagination.appendChild(btn);
+        }
+      }
+
+      // Fetch data
+      async function fetchData() {
+        refreshIcon.classList.add("loading");
+        const url =
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vTtpKPvFFaZcH16KBxQN83R8XGVLoM5gvrvOTuNyfvs1hGG2GszKvZwuuPGVJdW5qIFcyZnLI2WHBXo/pub?output=csv&t=" +
+          new Date().getTime();
+        try {
+          const res = await fetch(url);
+          const text = await res.text();
+          const rows = parseCSV(text);
+
+          dataRows = []; // reset array dulu
+          for (let i = 1; i < rows.length; i++) {
+            // skip header
+            if (!rows[i][0]) continue;
+            dataRows.push({
+              nama: rows[i][0],
+              harga: rows[i][1] || "",
+              stockIn: rows[i][2] || "0",
+              stockOut: rows[i][3] || "0",
+            });
+          }
+
+          currentPage = 1;
+          updateTable(currentPage);
+        } catch (err) {
+          console.error("Error loading CSV:", err);
+        } finally {
+          refreshIcon.classList.remove("loading");
+        }
+      }
+
+      // Events
+      searchBox.addEventListener("input", () => {
+        currentPage = 1;
+        updateTable(currentPage);
+      });
+
+      refreshIcon.addEventListener("click", fetchData);
+
+      rowsPerPageSelect.addEventListener("change", () => {
+        rowsPerPage = parseInt(rowsPerPageSelect.value);
+        currentPage = 1;
+        updateTable(currentPage);
+      });
+
+      // Fetch pertama kali
+      fetchData();
+    </script>
+  </body>
+</html>
